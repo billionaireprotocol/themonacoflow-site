@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Monaco Flow | E-Commerce Retail & Distribution</title>
+    <meta name="description" content="Monaco Flow LLC - Authorized e-commerce retail and distribution of consumer goods. Based in Florida.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #0a1628;
+            --dark-blue: #111d33;
+            --accent: #c8a44e;
+            --accent-light: #d4b86a;
+            --text: #e8e8e8;
+            --text-muted: #9aa3b0;
+            --white: #ffffff;
+            --border: rgba(200, 164, 78, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(rgba(10, 22, 40, 0.7), rgba(10, 22, 40, 0.85)),
+                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80') center/cover no-repeat;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 50% 30%, rgba(200, 164, 78, 0.08) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: var(--accent);
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: rgba(200, 164, 78, 0.1);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        /* About */
+        .about {
+            background: var(--dark-blue);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Services / What We Do */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--dark-blue);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2.5rem 2rem;
+            transition: border-color 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Categories */
+        .categories {
+            background: var(--dark-blue);
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .cat-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .cat-item:hover {
+            border-color: var(--accent);
+            background: rgba(200, 164, 78, 0.03);
+        }
+
+        .cat-item .icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cat-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* Why Us */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .why-item {
+            display: flex;
+            gap: 1.2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: var(--dark-blue);
+            border: 1px solid var(--border);
+        }
+
+        .why-item .check {
+            color: var(--accent);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .why-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.4rem;
+        }
+
+        .why-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--dark-blue);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item .value {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .contact-item .value a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .contact-item .value a:hover {
+            color: var(--accent);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: var(--navy);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.9rem 1.2rem;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2.5rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-toggle { display: block; }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 22, 40, 0.98);
+                padding: 2rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .hero h1 { font-size: 2.2rem; }
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .cat-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .stats-row { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+            .stat h3 { font-size: 1.4rem; }
+            .btn-outline { margin-left: 0; margin-top: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">THE MONACO <span>FLOW</span></a>
+            <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#categories">Products</a></li>
+                <li><a href="#why">Why Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">E-Commerce Retail & Distribution</div>
+            <h1>Consumer Goods Distribution for the Modern Market</h1>
+            <p>Monaco Flow LLC is a Florida-based e-commerce retail and distribution company specializing in consumer products across home, lifestyle, and everyday essentials.</p>
+            <a href="#contact" class="btn">Partner With Us</a>
+            <a href="#about" class="btn btn-outline">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-text">
+                    <div class="section-label">About Us</div>
+                    <h2 class="section-title">Built for Scale, Driven by Precision</h2>
+                    <p>Monaco Flow LLC is a registered e-commerce retail and distribution company operating out of Florida. We specialize in sourcing, warehousing, and distributing consumer products through major online retail channels.</p>
+                    <p>Our operations are built on efficient logistics, strict MAP compliance, and strong supplier relationships. We work with authorized distributors and wholesale partners to bring quality products to consumers through trusted e-commerce platforms.</p>
+                    <p>We maintain dedicated fulfillment infrastructure and inventory management systems designed for high-volume, multi-channel distribution.</p>
+                </div>
+                <div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <h3>FL</h3>
+                            <p>Based in Florida</p>
+                        </div>
+                        <div class="stat">
+                            <h3>Multi</h3>
+                            <p>Channel Retail</p>
+                        </div>
+                        <div class="stat">
+                            <h3>MAP</h3>
+                            <p>Compliant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="section-inner">
+            <div class="section-label">What We Do</div>
+            <h2 class="section-title">Full-Service E-Commerce Distribution</h2>
+            <p class="section-subtitle">From sourcing to last-mile delivery, we handle the complete product lifecycle.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">&#9733;</div>
+                    <h3>Wholesale Sourcing</h3>
+                    <p>We maintain relationships with authorized distributors and wholesale partners across multiple product categories, ensuring authentic, brand-compliant inventory.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#9881;</div>
+                    <h3>Inventory & Logistics</h3>
+                    <p>Dedicated warehousing and fulfillment operations with real-time inventory tracking, quality inspection, and rapid turnaround for multi-channel distribution.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#9650;</div>
+                    <h3>Multi-Channel Retail</h3>
+                    <p>Product listing management, brand-compliant content, and pricing strategy across major e-commerce platforms with strict MAP adherence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories" id="categories">
+        <div class="section-inner">
+            <div class="section-label">Product Categories</div>
+            <h2 class="section-title">Broad Market Coverage</h2>
+            <p class="section-subtitle">We distribute across high-demand consumer product verticals.</p>
+            <div class="cat-grid">
+                <div class="cat-item">
+                    <div class="icon">&#127968;</div>
+                    <h4>Home & Kitchen</h4>
+                </div>
+                <div class="cat-item">
+                    <div class="icon">&#127939;</div>
+                    <h4>Sports & Outdoors</h4>
+                </div>
+                <div class="cat-item">
+                    <div class="icon">&#128221;</div>
+                    <h4>Office Products</h4>
+                </div>
+                <div class="cat-item">
+                    <div class="icon">&#128118;</div>
+                    <h4>Baby & Family</h4>
+                </div>
+                <div class="cat-item">
+                    <div class="icon">&#127793;</div>
+                    <h4>Patio & Garden</h4>
+                </div>
+                <div class="cat-item">
+                    <div class="icon">&#128054;</div>
+                    <h4>Pet Supplies</h4>
+                </div>
+                <div class="cat-item">
+                    <div class="icon">&#128295;</div>
+                    <h4>Tools & Hardware</h4>
+                </div>
+                <div class="cat-item">
+                    <div class="icon">&#127912;</div>
+                    <h4>Arts & Crafts</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why">
+        <div class="section-inner">
+            <div class="section-label">Why Partner With Us</div>
+            <h2 class="section-title">Reliable, Compliant, Scalable</h2>
+            <p class="section-subtitle">We operate with the standards that serious brands and distributors expect.</p>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="check">&#10003;</div>
+                    <div>
+                        <h4>MAP Policy Compliance</h4>
+                        <p>We strictly adhere to Minimum Advertised Price policies across all channels. Brand pricing integrity is non-negotiable.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="check">&#10003;</div>
+                    <div>
+                        <h4>Authorized Channels Only</h4>
+                        <p>We source exclusively through authorized distributors and wholesale partners. No gray market, no unauthorized sourcing.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="check">&#10003;</div>
+                    <div>
+                        <h4>Dedicated Fulfillment</h4>
+                        <p>Professional warehousing with quality control, proper storage conditions, and efficient logistics infrastructure.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="check">&#10003;</div>
+                    <div>
+                        <h4>Brand-Compliant Content</h4>
+                        <p>Product listings maintain brand guidelines with accurate descriptions, authorized imagery, and proper categorization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="section-inner">
+            <div class="section-label">Get In Touch</div>
+            <h2 class="section-title">Partner Inquiries</h2>
+            <p class="section-subtitle">Interested in working with us? We'd like to hear from you.</p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <div>
+                            <div class="label">General Inquiries</div>
+                            <div class="value"><a href="mailto:info@themonacoflow.com">info@themonacoflow.com</a></div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div>
+                            <div class="label">Wholesale & Purchasing</div>
+                            <div class="value"><a href="mailto:wholesale@themonacoflow.com">wholesale@themonacoflow.com</a></div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div>
+                            <div class="label">Location</div>
+                            <div class="value">Florida, United States</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div>
+                            <div class="label">Entity</div>
+                            <div class="value">Monaco Flow LLC</div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="text" name="company" placeholder="Company Name">
+                    <textarea name="message" placeholder="Tell us about your business and how we can work together..." required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Monaco Flow LLC. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
